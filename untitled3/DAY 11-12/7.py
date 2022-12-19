@@ -1,0 +1,22 @@
+sort_dict = {}
+vlan_list = []
+new_list = []
+sort_vlans = []
+set_vlans = set()
+with open ('CAM_table.txt') as file:
+    for line in file:
+        list = line.split()
+        for item in list:
+           if len(item.split('.')) == 3:
+               print('{} {:>17} {:>9}'.format(list[0], list[1], list[3]))
+               vlan_list.append(list[0])
+               new_list.append(list[0] +'   '+ list[1] +'   '+ list[3])
+set_vlans = set(vlan_list)
+sort_vlans = [vlan_item for vlan_item in set_vlans]
+sort_vlans.sort()
+print(sort_vlans)
+print('items whis one vlan')
+vlan_number =input('Enter vlan number  ')
+for item in new_list:
+    if str(vlan_number) in item[0:4]:
+        print(item)
